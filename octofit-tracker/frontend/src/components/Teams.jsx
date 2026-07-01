@@ -4,11 +4,14 @@ import { getApiBaseUrl, getCollectionData } from '../utils/api';
 function Teams() {
   const [teams, setTeams] = useState([]);
   const [error, setError] = useState('');
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+    : '/api/teams/';
 
   useEffect(() => {
     const loadTeams = async () => {
       try {
-        const data = await getCollectionData('/api/teams/');
+        const data = await getCollectionData(endpoint);
         setTeams(data);
       } catch (err) {
         setError(err.message || 'Unable to load teams');

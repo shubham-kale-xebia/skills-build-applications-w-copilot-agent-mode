@@ -28,7 +28,10 @@ const normalizeCollection = (payload) => {
 };
 
 export const getCollectionData = async (path) => {
-  const response = await fetch(`${getApiBaseUrl()}${path}`);
+  const requestUrl = path.startsWith('http://') || path.startsWith('https://')
+    ? path
+    : `${getApiBaseUrl()}${path}`;
+  const response = await fetch(requestUrl);
 
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`);

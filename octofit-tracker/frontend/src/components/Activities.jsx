@@ -4,11 +4,14 @@ import { getApiBaseUrl, getCollectionData } from '../utils/api';
 function Activities() {
   const [activities, setActivities] = useState([]);
   const [error, setError] = useState('');
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+    : '/api/activities/';
 
   useEffect(() => {
     const loadActivities = async () => {
       try {
-        const data = await getCollectionData('/api/activities/');
+        const data = await getCollectionData(endpoint);
         setActivities(data);
       } catch (err) {
         setError(err.message || 'Unable to load activities');

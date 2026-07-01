@@ -4,11 +4,14 @@ import { getApiBaseUrl, getCollectionData } from '../utils/api';
 function Leaderboard() {
   const [entries, setEntries] = useState([]);
   const [error, setError] = useState('');
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+    : '/api/leaderboard/';
 
   useEffect(() => {
     const loadLeaderboard = async () => {
       try {
-        const data = await getCollectionData('/api/leaderboard/');
+        const data = await getCollectionData(endpoint);
         setEntries(data);
       } catch (err) {
         setError(err.message || 'Unable to load leaderboard');

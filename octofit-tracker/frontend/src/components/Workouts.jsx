@@ -4,11 +4,14 @@ import { getApiBaseUrl, getCollectionData } from '../utils/api';
 function Workouts() {
   const [workouts, setWorkouts] = useState([]);
   const [error, setError] = useState('');
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+    : '/api/workouts/';
 
   useEffect(() => {
     const loadWorkouts = async () => {
       try {
-        const data = await getCollectionData('/api/workouts/');
+        const data = await getCollectionData(endpoint);
         setWorkouts(data);
       } catch (err) {
         setError(err.message || 'Unable to load workouts');

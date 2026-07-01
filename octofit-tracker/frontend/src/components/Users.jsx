@@ -4,11 +4,14 @@ import { getApiBaseUrl, getCollectionData } from '../utils/api';
 function Users() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+    : '/api/users/';
 
   useEffect(() => {
     const loadUsers = async () => {
       try {
-        const data = await getCollectionData('/api/users/');
+        const data = await getCollectionData(endpoint);
         setUsers(data);
       } catch (err) {
         setError(err.message || 'Unable to load users');
