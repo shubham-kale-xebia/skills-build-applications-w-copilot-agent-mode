@@ -1,0 +1,12 @@
+.app-shell {
+  max-width: 1120px;
+}
+
+.card {
+  border: 0;
+  border-radius: 1rem;
+}
+
+.table thead {
+  background: #f8f9fa;
+}
