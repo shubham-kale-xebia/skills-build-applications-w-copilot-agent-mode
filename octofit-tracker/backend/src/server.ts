@@ -14,15 +14,16 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', apiBaseUrl: getApiBaseUrl() });
 });
 
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Backend running on port ${port}`);
+  console.log(`API base URL: ${getApiBaseUrl()}`);
+});
+
 mongoose
   .connect(mongoUri)
   .then(() => {
-    app.listen(port, '0.0.0.0', () => {
-      console.log(`Backend running on port ${port}`);
-      console.log(`API base URL: ${getApiBaseUrl()}`);
-    });
+    console.log('MongoDB connected successfully');
   })
   .catch((error) => {
     console.error('MongoDB connection failed:', error);
-    process.exit(1);
   });
