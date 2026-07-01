@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = require("../config");
 const models_1 = require("../models");
+// Seed the octofit_db database with test data
 const seed = async () => {
     console.log('Seed the octofit_db database with test data');
     const mongoUri = (0, config_1.getMongoUri)();

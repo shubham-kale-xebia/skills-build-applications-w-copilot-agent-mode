@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { getMongoUri } from '../config';
 import { Activity, LeaderboardEntry, Team, User, Workout } from '../models';
 
+// Seed the octofit_db database with test data
 const seed = async () => {
   console.log('Seed the octofit_db database with test data');
 

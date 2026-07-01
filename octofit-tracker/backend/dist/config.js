@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMongoUri = exports.getApiBaseUrl = void 0;
+exports.getApiBaseUrl = exports.getMongoUri = exports.connectDatabase = exports.DATABASE_NAME = exports.DATABASE_URI = void 0;
+var database_1 = require("./config/database");
+Object.defineProperty(exports, "DATABASE_URI", { enumerable: true, get: function () { return database_1.DATABASE_URI; } });
+Object.defineProperty(exports, "DATABASE_NAME", { enumerable: true, get: function () { return database_1.DATABASE_NAME; } });
+Object.defineProperty(exports, "connectDatabase", { enumerable: true, get: function () { return database_1.connectDatabase; } });
+Object.defineProperty(exports, "getMongoUri", { enumerable: true, get: function () { return database_1.getMongoUri; } });
 const getApiBaseUrl = () => {
     const codespaceName = process.env.CODESPACE_NAME;
     return codespaceName
@@ -8,5 +13,3 @@ const getApiBaseUrl = () => {
         : 'http://localhost:8000';
 };
 exports.getApiBaseUrl = getApiBaseUrl;
-const getMongoUri = () => process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/octofit_db';
-exports.getMongoUri = getMongoUri;
